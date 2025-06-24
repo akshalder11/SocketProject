@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaderboard Client</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h2>Leaderboard Client</h2>
+  <script>
+    const socket = io('https://socketproject-0oan.onrender.com/');
+
+    socket.on('connect', () => {
+      console.log('Socket Connected');
+
+      socket.emit('update_score', {
+        playerId: 'Akash',
+        score: 330,
+        region: 'England',
+        mode: 'Solo'
+      });
+
+      socket.emit('get_top_players', {
+        region: 'England',
+        mode: 'Solo',
+        limit: 5
+      });
+    });
+
+    socket.on('top_players', (data) => {
+      console.log('Top Players:', data);
+    });
+
+    socket.on('leaderboard_updated', (data) => {
+      console.log('Leaderboard Updated:', data);
+    });
+  </script>
+</body>
+</html>

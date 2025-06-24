@@ -8,8 +8,5 @@ const LeaderboardSchema = new mongoose.Schema({
   date: { type: Date, default: () => new Date() },
 }, { timestamps: true });
 
-// TTL for daily reset (24 hours after insertion)
-// LeaderboardSchema.index({ date: 1 }, { expireAfterSeconds: 86400 });
-// LeaderboardSchema.index({ region: 1, mode: 1, score: -1 });
 
 module.exports = mongoose.model('Leaderboard', LeaderboardSchema);

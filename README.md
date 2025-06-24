@@ -32,7 +32,7 @@ This backend serves:
 ├── models/
 │   └── Leaderboard.js
 ├── public/
-│   └── index.html         ← Test UI (served by Express)
+│   └── index.html         ← Simple UI for testing
 ├── socket.js              ← Socket.io logic
 ├── server.js              ← Main backend entry
 ├── db.js                  ← MongoDB connection
@@ -56,14 +56,12 @@ This backend serves:
 
 ## ✅ How to Test
 
-### Option 1: Use the Hosted Web Client
+### Option 1: Use the Hosted Web UI
 
-1. Go to: **https://socketproject-0oan.onrender.com/**
-2. Open your browser’s developer console
-3. You’ll see messages printed when:
-   - A score is updated
-   - Leaderboard is fetched
-   - Leaderboard is broadcasted
+1. Visit **https://socketproject-0oan.onrender.com/**
+2. Fill in the player ID, score, region, and mode
+3. Click "Submit Score" or "Get Top Players"
+4. Messages and data will appear in the console area below
 
 ### Option 2: Use Node.js Test Script
 
@@ -105,14 +103,13 @@ Then run:
 node testClient.js
 ```
 
-✅ You’ll see the live interactions in the terminal.
+✅ You’ll see the real-time responses in your terminal.
 
 ---
 
 ## 🧹 Notes
 
-- Your data will now be saved in the `leaderboard` database (not `test`)
-- TTL logic auto-resets scores every 24 hours
-- Indexes optimize sorting and querying for real-time use
+- Data is stored in the `leaderboard` database (not the default `test`)
+- Indexes are used to sort/filter data quickly
 
 ---
