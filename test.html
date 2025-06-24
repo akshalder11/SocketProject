@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Leaderboard Test</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h1>Leaderboard Test</h1>
+  <script>
+    const socket = io('http://localhost:3000');
+
+    socket.on('connect', () => {
+      console.log('Connected!');
+
+      // Update
+      socket.emit('update_score', {
+        playerId: 'Bill',
+        score: 400,
+        region: 'ASIA',
+        mode: 'deathmatch'
+      });
+
+      // Get top players
+      socket.emit('get_top_players', {
+        region: 'ASIA',
+        mode: 'deathmatch',
+        limit: 5
+      });
+    });
+
+    socket.on('leaderboard_updated', (data) => {
+      console.log('Leaderboard Updated:', data);
+    });
+
+    socket.on('top_players', (data) => {
+      console.log('List of Top Players:', data);
+    });
+  </script>
+</body>
+</html>
